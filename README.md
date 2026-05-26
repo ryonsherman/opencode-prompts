@@ -4,12 +4,24 @@ Agent prompts for the [OpenCode](https://opencode.ai) CLI agent. Installed to `~
 
 | Prompt | Description |
 |--------|-------------|
+| [api](#apimd) | API agent - designs, implements, and documents REST and GraphQL APIs |
+| [api-enhanced](#api-enhancedmd) | API agent with plugins - memory, search, decisions, snippets |
 | [code-review](#code-reviewmd) | Code review agent - analyzes code and outputs findings to REVIEW.md |
 | [code-review-enhanced](#code-review-enhancedmd) | Code review with plugins - memory, search, git context, error/decision tracking |
 | [coding-agent](#coding-agentmd) | Coding agent - Python preferred, Node.js secondary, strict standards |
 | [coding-agent-enhanced](#coding-agent-enhancedmd) | Coding agent with plugins - memory, search, tasks, snippets, utilities |
+| [debug](#debugmd) | Debug agent - diagnoses and fixes bugs, errors, and unexpected behavior |
+| [debug-enhanced](#debug-enhancedmd) | Debug agent with plugins - memory, search, error tracking, snippets |
+| [document](#documentmd) | Documentation agent - analyzes code and generates comprehensive documentation |
+| [document-enhanced](#document-enhancedmd) | Documentation agent with plugins - memory, search, decisions, snippets |
+| [migration](#migrationmd) | Migration agent - handles framework, language, and dependency migrations |
+| [migration-enhanced](#migration-enhancedmd) | Migration agent with plugins - memory, search, decisions, snippets |
 | [optimize](#optimizemd) | Optimization agent - analyzes and fixes performance/quality issues autonomously |
 | [optimize-enhanced](#optimize-enhancedmd) | Optimization with plugins - memory, search, decisions, snippets |
+| [refactor](#refactormd) | Refactor agent - restructures code for clarity and maintainability |
+| [refactor-enhanced](#refactor-enhancedmd) | Refactor agent with plugins - memory, search, decisions, snippets |
+| [security](#securitymd) | Security agent - audits code for vulnerabilities and fixes them |
+| [security-enhanced](#security-enhancedmd) | Security agent with plugins - memory, search, error tracking, snippets |
 | [test](#testmd) | Test agent - analyzes coverage gaps and writes tests autonomously |
 | [test-enhanced](#test-enhancedmd) | Test agent with plugins - memory, search, error tracking, snippets |
 
@@ -296,3 +308,286 @@ Enhanced test agent with plugin support.
 | `decision_log` | Record testing decisions |
 | `snippet_save` | Save reusable test patterns |
 | `command_log` | Log test run results |
+
+### `document.md`
+
+Documentation agent for analyzing code and generating comprehensive documentation. **Fully autonomous** — analyzes, documents, and verifies without requiring another agent.
+
+**Tools:**
+
+| Tool | Enabled |
+|------|---------|
+| `read` | yes |
+| `glob` | yes |
+| `grep` | yes |
+| `write` | yes |
+| `edit` | yes |
+| `bash` | yes |
+
+**What it documents:**
+- README files
+- API documentation
+- Architecture documentation
+- Inline code documentation
+- User guides
+
+**Behavior:**
+- Analyzes code structure and patterns
+- **Directly writes documentation files**
+- Follows project conventions for doc style
+- Documents in `DOCUMENTATION.md` or appropriate files
+- Generates OpenAPI specs for APIs when applicable
+
+### `document-enhanced.md`
+
+Enhanced documentation agent with plugin support.
+
+**Additional tools:**
+
+| Tool | Description |
+|------|-------------|
+| `git_context` | Branch state and recent commits |
+| `project_profile` | Follow project conventions |
+| `codebase_search` | Find patterns to document |
+| `memory_store` | Store documentation context |
+| `memory_retrieve` | Recall past documentation work |
+| `decision_search` | Include relevant decisions |
+| `decision_log` | Record documentation decisions |
+| `snippet_save` | Save reusable doc patterns |
+
+### `security.md`
+
+Security agent for auditing code and fixing vulnerabilities. **Fully autonomous** — analyzes, fixes, verifies, and documents without requiring another agent.
+
+**Tools:**
+
+| Tool | Enabled |
+|------|---------|
+| `read` | yes |
+| `glob` | yes |
+| `grep` | yes |
+| `write` | yes |
+| `edit` | yes |
+| `bash` | yes |
+
+**What it audits:**
+
+| Priority | Vulnerabilities |
+|----------|-----------------|
+| Critical | SQL injection, command injection, hardcoded secrets, broken auth |
+| High | XSS, CSRF, insecure deserialization, path traversal |
+| Medium | Missing rate limiting, weak crypto, verbose errors |
+| Low | Missing security headers, outdated dependencies |
+
+**Behavior:**
+- Scans code for security vulnerabilities
+- **Directly edits source files** to apply fixes
+- Runs linters and tests after changes
+- Documents findings and fixes in `SECURITY.md`
+- Prioritizes by severity: Critical > High > Medium > Low
+
+### `security-enhanced.md`
+
+Enhanced security agent with plugin support.
+
+**Additional tools:**
+
+| Tool | Description |
+|------|-------------|
+| `git_context` | Branch state and recent commits |
+| `project_profile` | Follow security conventions |
+| `codebase_search` | Find vulnerable patterns |
+| `memory_store` | Store audit context |
+| `memory_retrieve` | Recall past security work |
+| `error_search` | Check for past security issues |
+| `error_log` | Log new vulnerabilities found |
+| `decision_search` | Check past security decisions |
+| `decision_log` | Record security decisions |
+| `snippet_save` | Save secure coding patterns |
+
+### `refactor.md`
+
+Refactor agent for restructuring code without changing behavior. **Fully autonomous** — analyzes, refactors, verifies, and documents without requiring another agent.
+
+**Tools:**
+
+| Tool | Enabled |
+|------|---------|
+| `read` | yes |
+| `glob` | yes |
+| `grep` | yes |
+| `write` | yes |
+| `edit` | yes |
+| `bash` | yes |
+
+**What it refactors:**
+
+| Impact | Refactorings |
+|--------|--------------|
+| High | Extract functions, remove duplication, split god classes, flatten nesting |
+| Medium | Rename unclear identifiers, replace magic numbers, simplify conditionals |
+| Low | Reorder functions, add early returns, organize imports |
+
+**Behavior:**
+- Analyzes code for refactoring opportunities
+- **Directly edits source files** preserving behavior
+- Runs tests after each change
+- Documents changes in `REFACTOR.md`
+- Prioritizes by impact: High > Medium > Low
+
+### `refactor-enhanced.md`
+
+Enhanced refactor agent with plugin support.
+
+**Additional tools:**
+
+| Tool | Description |
+|------|-------------|
+| `git_context` | Branch state and recent commits |
+| `project_profile` | Follow project conventions |
+| `codebase_search` | Find duplicate patterns |
+| `memory_store` | Store refactoring context |
+| `memory_retrieve` | Recall past refactoring work |
+| `decision_search` | Check past architectural decisions |
+| `decision_log` | Record refactoring decisions |
+| `snippet_save` | Save refactoring patterns |
+| `diff_lines` | Verify behavior unchanged |
+
+### `migration.md`
+
+Migration agent for handling codebase migrations. **Fully autonomous** — analyzes, migrates, verifies, and documents without requiring another agent.
+
+**Tools:**
+
+| Tool | Enabled |
+|------|---------|
+| `read` | yes |
+| `glob` | yes |
+| `grep` | yes |
+| `write` | yes |
+| `edit` | yes |
+| `bash` | yes |
+
+**Migration types:**
+- Framework migrations (Express to Fastify, React class to hooks)
+- Language version migrations (Python 2 to 3, Node.js upgrades)
+- Dependency migrations (moment to date-fns, lodash upgrades)
+- Architectural migrations (CommonJS to ES Modules, callbacks to async/await)
+
+**Behavior:**
+- Analyzes codebase for migration targets
+- **Directly edits source files** with migration changes
+- Runs tests after each migration step
+- Documents changes in `MIGRATION.md`
+- Handles deprecation warnings
+
+### `migration-enhanced.md`
+
+Enhanced migration agent with plugin support.
+
+**Additional tools:**
+
+| Tool | Description |
+|------|-------------|
+| `git_context` | Branch state and recent commits |
+| `project_profile` | Follow project conventions |
+| `codebase_search` | Find migration targets |
+| `memory_store` | Store migration context |
+| `memory_retrieve` | Recall past migration work |
+| `decision_search` | Check past migration decisions |
+| `decision_log` | Record migration decisions |
+| `snippet_save` | Save migration patterns |
+| `diff_lines` | Verify migration correctness |
+
+### `debug.md`
+
+Debug agent for diagnosing and fixing bugs. **Fully autonomous** — investigates, diagnoses, fixes, and documents without requiring another agent.
+
+**Tools:**
+
+| Tool | Enabled |
+|------|---------|
+| `read` | yes |
+| `glob` | yes |
+| `grep` | yes |
+| `write` | yes |
+| `edit` | yes |
+| `bash` | yes |
+
+**Bug patterns handled:**
+- Logic errors (off-by-one, wrong operators, missing edge cases)
+- Data errors (null/undefined, type mismatches)
+- Async errors (race conditions, missing await)
+- State errors (stale state, mutation issues)
+- Integration errors (API mismatches, config errors)
+
+**Behavior:**
+- Reproduces the bug to verify it exists
+- Traces stack to find root cause
+- **Directly edits source files** with minimal fixes
+- Runs tests to verify fix
+- Documents fixes in `DEBUG.md`
+
+### `debug-enhanced.md`
+
+Enhanced debug agent with plugin support.
+
+**Additional tools:**
+
+| Tool | Description |
+|------|-------------|
+| `git_context` | Branch state and recent commits |
+| `project_profile` | Follow project conventions |
+| `codebase_search` | Find related code |
+| `memory_store` | Store debugging context |
+| `memory_retrieve` | Recall past debugging work |
+| `error_search` | Check for past similar errors |
+| `error_log` | Log new errors found |
+| `error_resolve` | Record how errors were fixed |
+| `decision_search` | Check past debugging decisions |
+| `decision_log` | Record debugging decisions |
+| `snippet_save` | Save fix patterns |
+
+### `api.md`
+
+API agent for designing, implementing, and documenting APIs. **Fully autonomous** — designs, implements, tests, and documents without requiring another agent.
+
+**Tools:**
+
+| Tool | Enabled |
+|------|---------|
+| `read` | yes |
+| `glob` | yes |
+| `grep` | yes |
+| `write` | yes |
+| `edit` | yes |
+| `bash` | yes |
+
+**API types:**
+- REST APIs (Express, FastAPI, etc.)
+- GraphQL APIs (Apollo, etc.)
+
+**Behavior:**
+- Designs endpoints following REST/GraphQL best practices
+- **Directly implements route handlers** with validation
+- Implements proper error handling and status codes
+- Tests endpoints with curl
+- Documents API in `API.md` or OpenAPI spec
+
+### `api-enhanced.md`
+
+Enhanced API agent with plugin support.
+
+**Additional tools:**
+
+| Tool | Description |
+|------|-------------|
+| `git_context` | Branch state and recent commits |
+| `project_profile` | Follow project conventions |
+| `codebase_search` | Find existing API patterns |
+| `memory_store` | Store API design context |
+| `memory_retrieve` | Recall past API work |
+| `decision_search` | Check past API decisions |
+| `decision_log` | Record API design decisions |
+| `snippet_save` | Save reusable API patterns |
+| `command_log` | Log curl test results |

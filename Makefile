@@ -33,12 +33,24 @@ endef
 
 $(foreach name,$(PROMPT_NAMES),$(eval $(call PROMPT_RULES,$(name))))
 
+DESC_api := API agent - designs, implements, and documents REST and GraphQL APIs
+DESC_api-enhanced := API agent with plugins - memory, search, decisions, snippets
 DESC_code-review := Code review agent - analyzes code and outputs findings to REVIEW.md
 DESC_code-review-enhanced := Code review with plugins - memory, search, git context, error/decision tracking
 DESC_coding-agent := Coding agent - Python preferred, Node.js secondary, strict standards
 DESC_coding-agent-enhanced := Coding agent with plugins - memory, search, tasks, snippets, utilities
+DESC_debug := Debug agent - diagnoses and fixes bugs, errors, and unexpected behavior
+DESC_debug-enhanced := Debug agent with plugins - memory, search, error tracking, snippets
+DESC_document := Documentation agent - analyzes code and generates comprehensive documentation
+DESC_document-enhanced := Documentation agent with plugins - memory, search, decisions, snippets
+DESC_migration := Migration agent - handles framework, language, and dependency migrations
+DESC_migration-enhanced := Migration agent with plugins - memory, search, decisions, snippets
 DESC_optimize := Optimization agent - analyzes and fixes performance/quality issues autonomously
 DESC_optimize-enhanced := Optimization with plugins - memory, search, decisions, snippets
+DESC_refactor := Refactor agent - restructures code for clarity and maintainability
+DESC_refactor-enhanced := Refactor agent with plugins - memory, search, decisions, snippets
+DESC_security := Security agent - audits code for vulnerabilities and fixes them
+DESC_security-enhanced := Security agent with plugins - memory, search, error tracking, snippets
 DESC_test := Test agent - analyzes coverage gaps and writes tests autonomously
 DESC_test-enhanced := Test agent with plugins - memory, search, error tracking, snippets
 

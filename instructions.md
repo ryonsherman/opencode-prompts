@@ -162,6 +162,217 @@ The enhanced version (`test-enhanced.md`) adds plugin support:
 
 ---
 
+## Documentation Agent
+
+*If `document.md` or `document-enhanced.md` is installed.*
+
+Use this agent to analyze code and generate comprehensive documentation. This is a **fully autonomous agent** — it analyzes, documents, and verifies without requiring another agent.
+
+### When to use
+
+- Creating README files for new projects
+- Documenting APIs (REST, GraphQL)
+- Writing architecture documentation
+- Generating user guides
+
+### Behavior
+
+- Analyzes code structure and patterns
+- **Directly writes documentation files**
+- Follows project conventions for doc style
+- Documents in `DOCUMENTATION.md` or appropriate files
+- Generates OpenAPI specs for APIs when applicable
+
+The enhanced version (`document-enhanced.md`) adds plugin support:
+- `project_profile()` — Follows project conventions
+- `codebase_search()` — Finds patterns to document
+- `memory_store/retrieve()` — Remembers documentation patterns
+- `decision_log/search()` — Includes relevant decisions
+- `snippet_save()` — Saves reusable doc patterns
+
+---
+
+## Security Agent
+
+*If `security.md` or `security-enhanced.md` is installed.*
+
+Use this agent to audit code for security vulnerabilities and apply fixes. This is a **fully autonomous agent** — it analyzes, fixes, verifies, and documents without requiring another agent.
+
+### When to use
+
+- Security audit before deployment
+- Reviewing authentication/authorization code
+- Checking for common vulnerabilities (OWASP Top 10)
+- Hardening sensitive code paths
+
+### Behavior
+
+- Scans code for security vulnerabilities
+- **Directly edits source files** to apply fixes
+- Runs linters and tests after changes
+- Documents findings and fixes in `SECURITY.md`
+- Prioritizes by severity: Critical > High > Medium > Low
+
+### What it audits
+
+**Critical**: SQL injection, command injection, hardcoded secrets, broken auth
+**High**: XSS, CSRF, insecure deserialization, path traversal
+**Medium**: Missing rate limiting, weak crypto, verbose errors
+**Low**: Missing security headers, outdated dependencies
+
+The enhanced version (`security-enhanced.md`) adds plugin support:
+- `project_profile()` — Follows security conventions
+- `codebase_search()` — Finds vulnerable patterns
+- `memory_store/retrieve()` — Remembers audit patterns
+- `error_log/search()` — Tracks security issues
+- `decision_log/search()` — Records security decisions
+- `snippet_save()` — Saves secure coding patterns
+
+---
+
+## Refactor Agent
+
+*If `refactor.md` or `refactor-enhanced.md` is installed.*
+
+Use this agent to restructure code for clarity and maintainability without changing behavior. This is a **fully autonomous agent** — it analyzes, refactors, verifies, and documents without requiring another agent.
+
+### When to use
+
+- Cleaning up code after rapid development
+- Reducing technical debt
+- Improving code readability
+- Preparing code for new features
+
+### Behavior
+
+- Analyzes code for refactoring opportunities
+- **Directly edits source files** preserving behavior
+- Runs tests after each change
+- Documents changes in `REFACTOR.md`
+- Prioritizes by impact: High > Medium > Low
+
+### What it refactors
+
+**High Impact**: Extract functions, remove duplication, split god classes, flatten nesting
+**Medium Impact**: Rename unclear identifiers, replace magic numbers, simplify conditionals
+**Low Impact**: Reorder functions, add early returns, organize imports
+
+The enhanced version (`refactor-enhanced.md`) adds plugin support:
+- `project_profile()` — Follows project conventions
+- `codebase_search()` — Finds duplicate patterns
+- `memory_store/retrieve()` — Remembers refactoring patterns
+- `decision_log/search()` — Records refactoring decisions
+- `snippet_save()` — Saves refactoring patterns
+- `diff_lines()` — Verifies behavior unchanged
+
+---
+
+## Migration Agent
+
+*If `migration.md` or `migration-enhanced.md` is installed.*
+
+Use this agent to handle codebase migrations. This is a **fully autonomous agent** — it analyzes, migrates, verifies, and documents without requiring another agent.
+
+### When to use
+
+- Upgrading framework versions (React, Django, etc.)
+- Migrating language versions (Python 2→3, Node upgrades)
+- Replacing dependencies (moment→date-fns)
+- Architectural changes (CommonJS→ES Modules, callbacks→async/await)
+
+### Behavior
+
+- Analyzes codebase for migration targets
+- **Directly edits source files** with migration changes
+- Runs tests after each migration step
+- Documents changes in `MIGRATION.md`
+- Handles deprecation warnings
+
+The enhanced version (`migration-enhanced.md`) adds plugin support:
+- `project_profile()` — Follows project conventions
+- `codebase_search()` — Finds migration targets
+- `memory_store/retrieve()` — Remembers migration patterns
+- `decision_log/search()` — Records migration decisions
+- `snippet_save()` — Saves migration patterns
+- `diff_lines()` — Verifies migration correctness
+
+---
+
+## Debug Agent
+
+*If `debug.md` or `debug-enhanced.md` is installed.*
+
+Use this agent to diagnose and fix bugs. This is a **fully autonomous agent** — it investigates, diagnoses, fixes, and documents without requiring another agent.
+
+### When to use
+
+- Tracking down elusive bugs
+- Debugging error messages or stack traces
+- Fixing race conditions or async issues
+- Resolving null/undefined errors
+
+### Behavior
+
+- Reproduces the bug to verify it exists
+- Traces stack to find root cause
+- **Directly edits source files** with minimal fixes
+- Runs tests to verify fix
+- Documents fixes in `DEBUG.md`
+
+### Bug patterns handled
+
+**Logic errors**: Off-by-one, wrong operators, missing edge cases
+**Data errors**: Null/undefined, type mismatches
+**Async errors**: Race conditions, missing await
+**State errors**: Stale state, mutation issues
+**Integration errors**: API mismatches, config errors
+
+The enhanced version (`debug-enhanced.md`) adds plugin support:
+- `project_profile()` — Follows project conventions
+- `codebase_search()` — Finds related code
+- `memory_store/retrieve()` — Remembers debugging patterns
+- `error_log/search/resolve()` — Tracks and resolves errors
+- `decision_log/search()` — Records debugging decisions
+- `snippet_save()` — Saves fix patterns
+
+---
+
+## API Agent
+
+*If `api.md` or `api-enhanced.md` is installed.*
+
+Use this agent to design, implement, and document APIs. This is a **fully autonomous agent** — it designs, implements, tests, and documents without requiring another agent.
+
+### When to use
+
+- Creating new REST or GraphQL APIs
+- Adding endpoints to existing APIs
+- Documenting API contracts
+- Implementing proper error handling
+
+### Behavior
+
+- Designs endpoints following REST/GraphQL best practices
+- **Directly implements route handlers** with validation
+- Implements proper error handling and status codes
+- Tests endpoints with curl
+- Documents API in `API.md` or OpenAPI spec
+
+### API types
+
+- REST APIs (Express, FastAPI, etc.)
+- GraphQL APIs (Apollo, etc.)
+
+The enhanced version (`api-enhanced.md`) adds plugin support:
+- `project_profile()` — Follows project conventions
+- `codebase_search()` — Finds existing API patterns
+- `memory_store/retrieve()` — Remembers API patterns
+- `decision_log/search()` — Records API design decisions
+- `snippet_save()` — Saves reusable API patterns
+- `command_log()` — Logs curl test results
+
+---
+
 ## Installation
 
 1. Run `make install` (or `make install-<name>`) from this repo to copy agents to `~/.config/opencode/agents/`
