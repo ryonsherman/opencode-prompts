@@ -28,7 +28,7 @@ Each agent has an `-enhanced` version (e.g., `api-enhanced`, `debug-enhanced`) t
 - **Snippets** — save and reuse code patterns
 - **Error tracking** — log errors and resolutions
 
-Enhanced agents require [opencode-plugins](https://github.com/ryonsherman/opencode-plugins).
+Enhanced agents require my custom [opencode-plugins](https://github.com/ryonsherman/opencode-plugins).
 
 ## Setup
 
