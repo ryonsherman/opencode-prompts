@@ -8,6 +8,10 @@ Agent prompts for the [OpenCode](https://opencode.ai) CLI agent. Installed to `~
 | [code-review-enhanced](#code-review-enhancedmd) | Code review with plugins - memory, search, git context, error/decision tracking |
 | [coding-agent](#coding-agentmd) | Coding agent - Python preferred, Node.js secondary, strict standards |
 | [coding-agent-enhanced](#coding-agent-enhancedmd) | Coding agent with plugins - memory, search, tasks, snippets, utilities |
+| [optimize](#optimizemd) | Optimization agent - analyzes and fixes performance/quality issues autonomously |
+| [optimize-enhanced](#optimize-enhancedmd) | Optimization with plugins - memory, search, decisions, snippets |
+| [test](#testmd) | Test agent - analyzes coverage gaps and writes tests autonomously |
+| [test-enhanced](#test-enhancedmd) | Test agent with plugins - memory, search, error tracking, snippets |
 
 ## Setup
 
@@ -192,10 +196,103 @@ Enhanced coding agent with full plugin support for memory, search, and task trac
 4. **Verify** — Run linters/tests, `command_log()` results
 5. **Record** — `memory_store()`, `decision_log()`, `snippet_save()` as appropriate
 
-**Additional features:**
-- Follows project conventions from `project_profile()`
-- Tracks multi-step work with `todo_add/update`
-- Stores reusable patterns to snippet library
-- Logs errors and records resolutions
-- Records architectural decisions
-- Uses utilities (regex, json, hash, math) instead of hallucinating
+### `optimize.md`
+
+Optimization agent for analyzing and fixing performance, quality, and maintainability issues. **Fully autonomous** — analyzes, fixes, verifies, and documents without requiring another agent.
+
+**Tools:**
+
+| Tool | Enabled |
+|------|---------|
+| `read` | yes |
+| `glob` | yes |
+| `grep` | yes |
+| `write` | yes |
+| `edit` | yes |
+| `bash` | yes |
+
+**What it optimizes:**
+
+| Category | Issues |
+|----------|--------|
+| Performance (Critical) | O(n²) algorithms, N+1 queries, missing memoization, memory leaks, inefficient imports |
+| Performance (High) | Redundant calls, missing pagination, unoptimized regex, string concat in loops |
+| Code Quality (Medium) | Duplication, long functions, deep nesting, dead code, missing types |
+| Maintainability (Low) | Poor naming, magic numbers, complex conditionals |
+
+**Behavior:**
+- Analyzes code to identify optimization opportunities
+- **Directly edits source files** to apply fixes
+- Runs linters and tests after changes
+- Documents all changes in `OPTIMIZATIONS.md`
+- Prioritizes by impact: Critical > High > Medium > Low
+
+### `optimize-enhanced.md`
+
+Enhanced optimization agent with plugin support.
+
+**Additional tools:**
+
+| Tool | Description |
+|------|-------------|
+| `git_context` | Branch state and recent commits |
+| `project_profile` | Follow project conventions |
+| `codebase_search` | Find similar patterns across codebase |
+| `memory_store` | Store optimization context |
+| `memory_retrieve` | Recall past optimization work |
+| `error_search` | Check for past performance issues |
+| `decision_search` | Check past optimization decisions |
+| `decision_log` | Record optimization decisions |
+| `snippet_save` | Save reusable optimization patterns |
+| `command_log` | Log verification results |
+| `diff_lines` | Compare before/after changes |
+
+### `test.md`
+
+Test agent for analyzing coverage gaps and writing tests. **Fully autonomous** — analyzes, writes tests, runs them, and documents without requiring another agent.
+
+**Tools:**
+
+| Tool | Enabled |
+|------|---------|
+| `read` | yes |
+| `glob` | yes |
+| `grep` | yes |
+| `write` | yes |
+| `edit` | yes |
+| `bash` | yes |
+
+**What it tests:**
+
+| Priority | Areas |
+|----------|-------|
+| Critical | Public APIs, validation, auth, payments, database ops, error handling |
+| High | Business logic, state transitions, integrations, async operations |
+| Medium | Utilities, helpers, configuration, caching |
+| Low | Simple getters, pass-through functions |
+
+**Behavior:**
+- Analyzes code to identify test coverage gaps
+- **Directly writes test files** following existing patterns
+- Runs tests to verify they pass
+- Documents coverage analysis in `TESTS.md`
+- Prioritizes by importance: Critical > High > Medium > Low
+
+### `test-enhanced.md`
+
+Enhanced test agent with plugin support.
+
+**Additional tools:**
+
+| Tool | Description |
+|------|-------------|
+| `git_context` | Branch state and recent commits |
+| `project_profile` | Match existing test framework and patterns |
+| `codebase_search` | Find existing test patterns |
+| `memory_store` | Store testing context |
+| `memory_retrieve` | Recall past testing work |
+| `error_search` | Find bugs that need regression tests |
+| `decision_search` | Check past testing decisions |
+| `decision_log` | Record testing decisions |
+| `snippet_save` | Save reusable test patterns |
+| `command_log` | Log test run results |

@@ -37,6 +37,10 @@ DESC_code-review := Code review agent - analyzes code and outputs findings to RE
 DESC_code-review-enhanced := Code review with plugins - memory, search, git context, error/decision tracking
 DESC_coding-agent := Coding agent - Python preferred, Node.js secondary, strict standards
 DESC_coding-agent-enhanced := Coding agent with plugins - memory, search, tasks, snippets, utilities
+DESC_optimize := Optimization agent - analyzes and fixes performance/quality issues autonomously
+DESC_optimize-enhanced := Optimization with plugins - memory, search, decisions, snippets
+DESC_test := Test agent - analyzes coverage gaps and writes tests autonomously
+DESC_test-enhanced := Test agent with plugins - memory, search, error tracking, snippets
 
 list:
 	@echo "Available agent prompts:"

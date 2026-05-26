@@ -1,12 +1,12 @@
 # OpenCode Prompts — Usage Instructions
 
-Supplement your own `~/.config/opencode/instructions.md` with the relevant sections below. These agents provide specialized prompts for code review and development. Each section applies only if the corresponding agent is installed.
+Supplement your own `~/.config/opencode/instructions.md` with the relevant sections below. These agents provide specialized prompts for code review, development, optimization, and testing. Each section applies only if the corresponding agent is installed.
 
 ---
 
 ## Code Review Agent
 
-*If `code-review.md` is installed.*
+*If `code-review.md` or `code-review-enhanced.md` is installed.*
 
 Use this agent when reviewing code. It analyzes code and outputs findings to `REVIEW.md` files — it never modifies source code.
 
@@ -16,15 +16,6 @@ Use this agent when reviewing code. It analyzes code and outputs findings to `RE
 - When asked to review specific files or directories
 - After completing a feature to self-review
 
-### How to invoke
-
-```
-/review src/auth/
-/review --branch feature/login
-```
-
-Or ask directly: "Review the changes in src/auth/"
-
 ### Behavior
 
 - Reads files with `read`, `glob`, `grep`
@@ -33,16 +24,7 @@ Or ask directly: "Review the changes in src/auth/"
 - Never edits source files
 - Categorizes issues as Critical, Warning, or Suggestion
 
----
-
-## Code Review Agent (Enhanced)
-
-*If `code-review-enhanced.md` is installed. Requires [opencode-plugins](https://github.com/ryonsherman/opencode-plugins).*
-
-Enhanced version with plugin support for context-aware reviews.
-
-### Additional capabilities
-
+The enhanced version (`code-review-enhanced.md`) adds plugin support:
 - `git_context()` — Understands branch state and recent commits
 - `project_profile()` — Follows project conventions
 - `codebase_search()` — Finds related code and patterns
@@ -50,19 +32,11 @@ Enhanced version with plugin support for context-aware reviews.
 - `decision_search()` — Verifies alignment with past decisions
 - `memory_store/retrieve()` — Remembers review patterns across sessions
 
-### When to use
-
-Use instead of the basic `code-review` agent when you want:
-- Reviews that consider past architectural decisions
-- Pattern recognition across the codebase
-- Memory of past review findings
-- Convention enforcement from project profile
-
 ---
 
 ## Coding Agent
 
-*If `coding-agent.md` is installed.*
+*If `coding-agent.md` or `coding-agent-enhanced.md` is installed.*
 
 Use this agent for implementing features, fixing bugs, and writing code.
 
@@ -87,22 +61,7 @@ Use this agent for implementing features, fixing bugs, and writing code.
 - Prefers editing existing files over creating new ones
 - No unnecessary comments or emoji
 
-### How to invoke
-
-Ask directly: "Add a function to validate email addresses"
-
-Or for complex tasks: "Implement user authentication with JWT tokens"
-
----
-
-## Coding Agent (Enhanced)
-
-*If `coding-agent-enhanced.md` is installed. Requires [opencode-plugins](https://github.com/ryonsherman/opencode-plugins).*
-
-Enhanced version with full plugin support for memory, search, and task tracking.
-
-### Additional capabilities
-
+The enhanced version (`coding-agent-enhanced.md`) adds plugin support:
 - `project_profile()` — Auto-detects and follows project conventions
 - `codebase_search()` — Finds existing patterns before writing
 - `memory_store/retrieve()` — Remembers context across sessions
@@ -115,24 +74,91 @@ Enhanced version with full plugin support for memory, search, and task tracking.
 - `json_validate()` — Validates JSON structures
 - `hash()`, `math_eval()`, `unit_convert()` — Utilities (never hallucinates)
 
-### When to use
-
-Use instead of the basic `coding-agent` when you want:
-- Memory of past work and decisions
-- Automatic convention enforcement
-- Task tracking for complex multi-step work
-- Reusable snippet library
-- Error tracking and pattern matching
-
-### Workflow
-
-The enhanced agent follows this workflow:
+### Enhanced workflow
 
 1. **Gather context**: `project_profile()`, `codebase_search()`, `memory_retrieve()`, `decision_search()`
 2. **Plan**: `todo_add()` for multi-step tasks
 3. **Implement**: Edit files, following conventions
 4. **Verify**: Run linters/tests, `command_log()` results
 5. **Record**: `memory_store()`, `decision_log()`, `snippet_save()` as appropriate
+
+---
+
+## Optimization Agent
+
+*If `optimize.md` or `optimize-enhanced.md` is installed.*
+
+Use this agent to analyze code for performance, quality, and maintainability issues, then apply fixes directly. This is a **fully autonomous agent** — it analyzes, fixes, verifies, and documents without requiring another agent.
+
+### When to use
+
+- Final optimization pass before release
+- Performance tuning a slow module
+- Code quality improvements
+- Reducing technical debt
+
+### Behavior
+
+- Analyzes code for performance bottlenecks, code quality issues, and maintainability problems
+- **Directly edits source files** to apply optimizations
+- Runs linters and tests after changes
+- Documents all changes in `OPTIMIZATIONS.md`
+- Prioritizes by impact: Critical > High > Medium > Low
+
+### What it optimizes
+
+**Performance**: O(n²) algorithms, N+1 queries, missing memoization, memory leaks, inefficient imports
+**Code Quality**: Duplication, long functions, deep nesting, dead code, missing types
+**Maintainability**: Poor naming, magic numbers, complex conditionals
+
+The enhanced version (`optimize-enhanced.md`) adds plugin support:
+- `project_profile()` — Follows project conventions
+- `codebase_search()` — Finds similar patterns across codebase
+- `memory_store/retrieve()` — Remembers optimization patterns
+- `decision_log/search()` — Records optimization decisions
+- `error_search()` — Checks for past performance issues
+- `snippet_save()` — Saves reusable optimization patterns
+- `command_log()` — Logs verification results
+- `diff_lines()` — Compares before/after changes
+
+---
+
+## Test Agent
+
+*If `test.md` or `test-enhanced.md` is installed.*
+
+Use this agent to analyze code for test coverage gaps and write comprehensive tests. This is a **fully autonomous agent** — it analyzes, writes tests, runs them, and documents without requiring another agent.
+
+### When to use
+
+- Adding test coverage to untested code
+- Ensuring critical paths are tested
+- Writing regression tests after bug fixes
+- Comprehensive test pass before release
+
+### Behavior
+
+- Analyzes code to identify what needs testing
+- **Directly writes test files** following existing patterns
+- Runs tests to verify they pass
+- Documents coverage analysis in `TESTS.md`
+- Prioritizes by importance: Critical > High > Medium > Low
+
+### What it tests
+
+**Critical**: Public APIs, validation, auth, payments, database ops, error handling
+**High**: Business logic, state transitions, integrations, async operations
+**Medium**: Utilities, helpers, configuration, caching
+**Low**: Simple getters, pass-through functions
+
+The enhanced version (`test-enhanced.md`) adds plugin support:
+- `project_profile()` — Matches existing test framework and patterns
+- `codebase_search()` — Finds existing test patterns
+- `memory_store/retrieve()` — Remembers testing patterns
+- `decision_log/search()` — Records testing decisions
+- `error_search()` — Finds bugs that need regression tests
+- `snippet_save()` — Saves reusable test patterns
+- `command_log()` — Logs test run results
 
 ---
 
