@@ -59,7 +59,8 @@ Use this agent for implementing features, fixing bugs, and writing code.
 - Follows existing patterns and conventions
 - Runs linters and type checkers after changes
 - Prefers editing existing files over creating new ones
-- No unnecessary comments or emoji
+- Adds helpful comments to aid human understanding of the code
+- No emoji
 
 The enhanced version (`coding-agent-enhanced.md`) adds plugin support:
 - `project_profile()` — Auto-detects and follows project conventions
